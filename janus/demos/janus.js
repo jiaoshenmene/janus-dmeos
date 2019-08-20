@@ -881,7 +881,7 @@ function Janus(gatewayCallbacks) {
 				'open': function() {
 					// We need to be notified about the success
 					transactions[transaction] = function(json) {
-						Janus.debug(json);
+						Janus.debug("wss  " + json);
 						if (json["janus"] !== "success") {
 							Janus.error("Ooops: " + json["error"].code + " " + json["error"].reason);	// FIXME
 							callbacks.error(json["error"].reason);
@@ -926,7 +926,7 @@ function Janus(gatewayCallbacks) {
 			withCredentials: withCredentials,
 			body: request,
 			success: function(json) {
-				Janus.debug(json);
+				Janus.debug("http " + json);
 				if(json["janus"] !== "success") {
 					Janus.error("Ooops: " + json["error"].code + " " + json["error"].reason);	// FIXME
 					callbacks.error(json["error"].reason);
