@@ -561,7 +561,7 @@ function Janus(gatewayCallbacks) {
 	function eventHandler() {
 		if(sessionId == null)
 			return;
-		Janus.debug('Long poll...');
+		Janus.debug('eventHandler Long poll...');
 		if(!connected) {
 			Janus.warn("Is the server down? (connected=false)");
 			return;
@@ -898,6 +898,7 @@ function Janus(gatewayCallbacks) {
 						Janus.sessions[sessionId] = that;
 						callbacks.success();
 					};
+					Janus.log("createsession = " + JSON.stringify(request));
 					ws.send(JSON.stringify(request));
 				},
 
@@ -1183,6 +1184,7 @@ function Janus(gatewayCallbacks) {
 				callbacks.success(pluginHandle);
 			};
 			request["session_id"] = sessionId;
+			Janus.log(JSON.stringify(request));
 			ws.send(JSON.stringify(request));
 			return;
 		}
@@ -1403,6 +1405,7 @@ function Janus(gatewayCallbacks) {
 		if(websockets) {
 			request["session_id"] = sessionId;
 			request["handle_id"] = handleId;
+			Janus.debug("send message ： " + JSON.stringify(request));
 			ws.send(JSON.stringify(request));
 			return;
 		}

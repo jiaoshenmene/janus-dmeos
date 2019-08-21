@@ -319,7 +319,7 @@ $(document).ready(function() {
 										}
 									} else {
 										$('#videolocal .no-video-container').remove();
-										$('#myvideo').removeClass('hide').show();
+										$('#myvideisAudioSendEnabledo').removeClass('hide').show();
 									}
 								},
 								onremotestream: function(stream) {
@@ -395,6 +395,7 @@ function registerUsername() {
 
 function publishOwnFeed(useAudio) {
 	// Publish our stream
+    Janus.debug("publishOwnFeed");
 	$('#publish').attr('disabled', true).unbind('click');
 	sfutest.createOffer(
 		{
@@ -453,6 +454,7 @@ function unpublishOwnFeed() {
 
 function newRemoteFeed(id, display, audio, video) {
 	// A new feed has been published, create a new plugin handle and attach to it as a subscriber
+    Janus.debug("newRemoteFeed");
 	var remoteFeed = null;
 	janus.attach(
 		{
@@ -485,7 +487,7 @@ function newRemoteFeed(id, display, audio, video) {
 				bootbox.alert("Error attaching plugin... " + error);
 			},
 			onmessage: function(msg, jsep) {
-				Janus.debug(" ::: Got a message (subscriber) :::");
+				Janus.debug("newRemoteFeed ::: Got a message (subscriber) :::");
 				Janus.debug(msg);
 				var event = msg["videoroom"];
 				Janus.debug("Event: " + event);
