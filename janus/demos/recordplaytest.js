@@ -48,6 +48,8 @@ if(window.location.protocol === 'http:')
 else
 	server = "https://" + window.location.hostname + ":8089/janus";
 
+server = "wss://www.mancangyun.com:8989";
+
 var janus = null;
 var recordplay = null;
 var opaqueId = "recordplaytest-"+Janus.randomString(12);
